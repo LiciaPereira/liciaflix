@@ -13,7 +13,7 @@ function Row({ title, fetchURL, isLargeRow = false }) {
       return request;
     }
     fetchData();
-  }, []);
+  }, [fetchURL]);
 
   return (
     <div className="row">
