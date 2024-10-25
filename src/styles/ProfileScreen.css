@@ -1,0 +1,66 @@
+.profilePage {
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.profilePage__body {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 8%;
+  max-width: 800px;
+}
+
+.profilePage__info {
+  display: flex;
+}
+
+.profilePage__leftSide {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.profilePage__info > img {
+  height: 100px;
+}
+
+.profilePage__body > h1 {
+  font-weight: 400;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #282c2d;
+}
+
+.profilePage__details {
+  color: white;
+  margin-left: 25px;
+  flex: 1;
+}
+
+.profilePage__details > h2 {
+  background-color: gray;
+  font-size: 15px;
+  padding: 15px;
+  padding-left: 20px;
+}
+
+.profilePage__signOut {
+  padding: 10px;
+  font-size: 1rem;
+  margin-top: 5%;
+  width: 100%;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background-color: #e50914;
+  color: white;
+}
+
+.profilePage__plans > h3 {
+  border-bottom: 1px solid #282c2d;
+  padding-bottom: 10px;
+  margin-top: 5%;
+}
