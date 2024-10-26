@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/LoginPage.css";
 import logo from "../assets/liciaflix-10-18-2024.png";
-import SignInPage from "./SignInPage";
+import SignUpPage from "./SignUpPage";
 
 function LoginPage() {
   const [signIn, setSignIn] = useState(false);
@@ -17,7 +17,7 @@ function LoginPage() {
       </div>
       <div className="loginScreen__body">
         {signIn ? (
-          <SignInPage />
+          <SignUpPage />
         ) : (
           <>
             <h1>Unlimited films, TV shows and more.</h1>

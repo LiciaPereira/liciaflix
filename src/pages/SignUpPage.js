@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-function SignInPage() {
+function SignUpPage() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -21,7 +21,6 @@ function SignInPage() {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -41,7 +40,6 @@ function SignInPage() {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -70,4 +68,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default SignUpPage;

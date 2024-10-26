@@ -1,14 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore/lite";
+import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBjn38x917ynhbz6Q7ytZKlp7VxPUHmsao",
-  authDomain: "liciaflix.firebaseapp.com",
-  projectId: "liciaflix",
-  storageBucket: "liciaflix.appspot.com",
-  messagingSenderId: "78166367626",
-  appId: "1:78166367626:web:365787e02cbaf8a29f7c73",
+  apiKey: "AIzaSyDbJiR9NHxC10dPUrk5LcGLGRxgUBL-0Ms",
+  authDomain: "licia-flix.firebaseapp.com",
+  projectId: "licia-flix",
+  storageBucket: "licia-flix.appspot.com",
+  messagingSenderId: "362531828440",
+  appId: "1:362531828440:web:24b95d706abbf6cd1d1dad",
 };
 
 const app = initializeApp(firebaseConfig);
