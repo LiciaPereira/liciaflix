@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
-        //Logged in
+        //logged in
         dispatch(
           login({
             uid: userAuth.uid,
@@ -23,7 +23,7 @@ function App() {
           })
         );
       } else {
-        //Logged out
+        //logged out
         dispatch(logout());
       }
     });

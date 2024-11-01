@@ -25,6 +25,7 @@ function ProfilePage() {
               <button
                 onClick={() => {
                   auth.signOut();
+                  window.location.href = "/";
                 }}
                 className="profilePage__signOut"
               >

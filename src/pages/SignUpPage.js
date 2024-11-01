@@ -10,6 +10,24 @@ function SignUpPage() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  //display error alert overlay
+  const showErrorAlert = (message) => {
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+
+    const alertBox = document.createElement("div");
+    alertBox.classList.add("overlay-alert");
+    alertBox.innerHTML = message;
+
+    const okButton = document.createElement("button");
+    okButton.innerHTML = "OK";
+    okButton.addEventListener("click", () => overlay.remove());
+
+    alertBox.appendChild(okButton);
+    overlay.appendChild(alertBox);
+    document.body.appendChild(overlay);
+  };
+
   const register = (e) => {
     e.preventDefault();
 
@@ -18,14 +36,15 @@ function SignUpPage() {
       emailRef.current.value,
       passwordRef.current.value
     )
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-      })
+      .then((userCredential) => {})
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(`Error ${errorCode}: ${errorMessage}`);
+        if (error.code === "auth/invalid-email") {
+          showErrorAlert("Invalid email.");
+        } else if (error.code === "auth/invalid-password") {
+          showErrorAlert("Invalid password.");
+        } else {
+          showErrorAlert("Something went wrong.");
+        }
       });
   };
 
@@ -38,13 +57,19 @@ function SignUpPage() {
       passwordRef.current.value
     )
       .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
+        console.log(
+          //hehe
+          "Oh, you're checking the console, huh? You're logged in! ツ"
+        );
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(`Error ${errorCode}: ${errorMessage}`);
+        if (error.code === "auth/invalid-email") {
+          showErrorAlert("Invalid email.");
+        } else if (error.code === "auth/invalid-password") {
+          showErrorAlert("Invalid password.");
+        } else {
+          showErrorAlert("Check your credentials.");
+        }
       });
   };
 
@@ -61,7 +86,7 @@ function SignUpPage() {
       <h4>
         <span className="signUpPage__gray">Don't have an account? </span>
         <span className="signUpPage__link" onClick={register}>
-          Sign Up now.
+          Sign up now.
         </span>
       </h4>
     </div>

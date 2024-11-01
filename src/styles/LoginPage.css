@@ -70,10 +70,19 @@
   margin-bottom: 30px;
 }
 
+.loginScreen__input {
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.loginScreen__input > form {
+  display: flex;
+  justify-content: center;
+}
+
 .loginScreen__input > form > input {
   padding: 10px;
   outline-width: 0;
-  height: 30px;
   width: 30%;
   border: none;
   max-width: 600px;

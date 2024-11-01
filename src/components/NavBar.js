@@ -8,6 +8,7 @@ function NavBar() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
+  //transition the navbar when scrolling
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
       setShow(true);
@@ -16,15 +17,22 @@ function NavBar() {
     }
   };
 
+  //add scrolling listener to the window to transition the navbar
   useEffect(() => {
     window.addEventListener("scroll", transitionNavBar);
     return () => window.removeEventListener("scroll", transitionNavBar);
   }, []);
 
   return (
+    //if the navbar is shown, add the black class
     <div className={`nav ${show && "nav__black"}`}>
       <div className="nav__contents">
-        <img className="nav__logo" src={logo} alt="Liciaflix logo" />
+        <img
+          className="nav__logo"
+          src={logo}
+          alt="Liciaflix logo"
+          onClick={() => navigate("/")}
+        />
 
         <img
           className="nav__avatar"

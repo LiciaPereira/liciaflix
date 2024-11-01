@@ -21,21 +21,21 @@ function PlansPage() {
     const fetchProducts = async () => {
       const productsData = {};
 
-      // Query to get all active products
+      //query to get all active products
       const productsQuery = query(
         collection(db, "products"),
         where("active", "==", true)
       );
       const querySnapshot = await getDocs(productsQuery);
 
-      // Process each product document
+      //process each product document
       for (const productDoc of querySnapshot.docs) {
         const productData = productDoc.data();
 
-        // Initialize product in productsData object
+        //initialize product in productsData object
         productsData[productDoc.id] = productData;
 
-        // Fetch prices collection for each product
+        //fetch prices collection for each product
         const pricesCollectionRef = collection(
           db,
           "products",
@@ -44,7 +44,7 @@ function PlansPage() {
         );
         const priceSnap = await getDocs(pricesCollectionRef);
 
-        // Attach price information to the product data
+        //attach price information to the product data
         priceSnap.docs.forEach((priceDoc) => {
           productsData[productDoc.id].prices = {
             priceId: priceDoc.id,
@@ -53,18 +53,16 @@ function PlansPage() {
         });
       }
 
-      // Update state with fetched products data
+      //update state with fetched products data
       setProducts(productsData);
     };
 
     fetchProducts().catch(console.error);
   }, []);
 
-  console.log(products);
-
   const loadCheckout = async (priceId) => {
     try {
-      // Reference the "checkout_sessions" collection under the user's document
+      //reference the "checkout_sessions" collection under the user's document
       const checkoutSessionsRef = collection(
         db,
         "customers",
@@ -72,14 +70,14 @@ function PlansPage() {
         "checkout_sessions"
       );
 
-      // Add a new checkout session document
+      //add a new checkout session document
       const docRef = await addDoc(checkoutSessionsRef, {
         price: priceId,
         success_url: window.location.origin,
         cancel_url: window.location.origin,
       });
 
-      // Listen for updates on this session document
+      //listen for updates on this session document
       onSnapshot(docRef, async (snap) => {
         const { error, sessionId } = snap.data();
 
@@ -102,7 +100,6 @@ function PlansPage() {
   return (
     <div className="plansPage">
       {Object.entries(products).map(([productId, productData]) => {
-        // TODO: Add logic to check if user's subscription is active
         return (
           <div className="plansPage__plan" key={productData.prices.priceId}>
             <div className="plansPage__info">

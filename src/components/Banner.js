@@ -5,22 +5,46 @@ import requests from "../services/Requests";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
+  //fetch data from api
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(requests.fetchNetflixOriginals);
-      setMovie(
-        request.data.results[
-          Math.floor(Math.random() * request.data.results.length - 1)
-        ]
-      );
-      return request;
+      try {
+        setIsLoading(true);
+        const request = await axios.get(requests.fetchNetflixOriginals);
+        let randomMovie;
+
+        do {
+          randomMovie =
+            request.data.results[
+              //randomly select a movie from the api
+              Math.floor(Math.random() * request.data.results.length)
+            ];
+        } while (!randomMovie?.backdrop_path); //make sure there's a move picture
+
+        setMovie(randomMovie);
+      } catch (error) {
+        console.error("Error fetching banner movie:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchData();
   }, []);
 
+  //truncate the description with e
   function truncate(string, n) {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
+  }
+
+  //if the content is still loading, show a loading spinner
+  if (isLoading) {
+    return (
+      <div className="banner banner--loading">
+        <div className="loading-spinner"></div>
+      </div>
+    );
   }
 
   return (
