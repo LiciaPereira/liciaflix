@@ -36,6 +36,16 @@
   top: 10px;
   width: 50px;
   cursor: pointer;
+  opacity: 0.9;
+}
+
+.nav__avatar:hover {
+  opacity: 1;
+}
+
+.nav__avatar:active {
+  transform: translateY(1px);
+  animation: ease-in-out 2s;
 }
 
 .nav__black {
