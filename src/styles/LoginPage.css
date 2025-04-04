@@ -51,6 +51,13 @@
   padding: 20px;
   left: 0;
   right: 0;
+  background-color: #00000004;
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .loginScreen__body > h1 {

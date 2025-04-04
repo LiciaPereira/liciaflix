@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../styles/LoginPage.css";
 import logo from "../assets/liciaflix-10-18-2024.png";
-import SignUpPage from "./SignUpPage";
+import SignInPage from "./SignInPage";
 
 function LoginPage() {
   const [signIn, setSignIn] = useState(false);
+  const [email, setEmail] = useState(null);
 
   return (
     <div className="loginScreen">
@@ -16,11 +17,9 @@ function LoginPage() {
         <div className="loginScreen__gradient"></div>
       </div>
       <div className="loginScreen__body">
-        {/* if the user is signed in, show the sign up page */}
-        {signIn ? (
-          <SignUpPage />
+        {signIn ? ( //toggle between landing page and signin page
+          <SignInPage email={email} />
         ) : (
-          //if the user is not signed in, show the login page
           <>
             <h1>Unlimited films, TV shows and more.</h1>
             <h2>Watch anywhere. Cancel any time.</h2>
@@ -30,7 +29,11 @@ function LoginPage() {
             </h3>
             <div className="loginScreen__input">
               <form>
-                <input type="email" placeholder="Email Address" />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
                 <button
                   onClick={() => setSignIn(true)}
                   className="loginScreen__getStarted"
