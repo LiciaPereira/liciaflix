@@ -19,6 +19,7 @@
   cursor: pointer;
   min-width: 120px;
   position: relative;
+  margin-left: 10px;
 }
 
 .plansPage__plan > button:disabled {

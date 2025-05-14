@@ -1,66 +1,165 @@
 .profilePage {
-  height: 100vh;
+  min-height: 100vh;
   background-color: black;
   color: white;
+  position: relative;
+}
+
+.profilePage__container {
+  width: 100%;
+  min-height: calc(100vh - 68px); /* Account for navbar */
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .profilePage__body {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 8%;
+  width: 100%;
   max-width: 800px;
+  margin: 70px auto 0;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.profilePage__body > h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #282c2d;
+  padding-bottom: 15px;
 }
 
 .profilePage__info {
   display: flex;
+  gap: 30px;
+  margin-top: 20px;
 }
 
-.profilePage__leftSide {
-  width: 20%;
-  margin-right: 20px;
+.profilePage__avatar {
+  flex-shrink: 0;
 }
 
-.profilePage__info > img {
-  height: 100px;
-}
-
-.profilePage__body > h1 {
-  font-weight: 400;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #282c2d;
+.profilePage__avatar img {
+  width: clamp(80px, 15vw, 120px);
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
 }
 
 .profilePage__details {
-  color: white;
-  margin-left: 25px;
   flex: 1;
+  min-width: 0; /* Prevents flex item from overflowing */
 }
 
-.profilePage__details > h2 {
-  background-color: gray;
-  font-size: 15px;
-  padding: 15px;
-  padding-left: 20px;
+.profilePage__details h2 {
+  background-color: #404040;
+  padding: 15px 20px;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  border-radius: 4px;
+  word-break: break-word;
+  margin-bottom: 20px;
+}
+
+.profilePage__plans {
+  margin-top: 30px;
+}
+
+.profilePage__plans h3 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  border-bottom: 1px solid #282c2d;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.profilePage__plansContainer {
+  margin: 20px 0;
 }
 
 .profilePage__signOut {
-  padding: 10px;
-  font-size: 1rem;
-  margin-top: 5%;
   width: 100%;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
+  padding: 16px;
   background-color: #e50914;
   color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 20px;
 }
 
-.profilePage__plans > h3 {
-  border-bottom: 1px solid #282c2d;
-  padding-bottom: 10px;
-  margin-top: 5%;
+.profilePage__signOut:hover {
+  background-color: #f40612;
+  transform: scale(1.02);
+}
+
+.profilePage__signOut:active {
+  transform: scale(0.98);
+}
+
+/* Larger screens (1200px+) */
+@media screen and (min-width: 1200px) {
+  .profilePage__body {
+    padding: 40px;
+  }
+}
+
+/* Tablet screens */
+@media screen and (max-width: 768px) {
+  .profilePage__body {
+    margin-top: 50px;
+    padding: 20px;
+  }
+
+  .profilePage__info {
+    gap: 20px;
+  }
+}
+
+/* Mobile screens */
+@media screen and (max-width: 480px) {
+  .profilePage__container {
+    padding: 10px;
+  }
+
+  .profilePage__body {
+    margin-top: 30px;
+    padding: 15px;
+  }
+
+  .profilePage__info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .profilePage__avatar img {
+    width: 100px;
+    margin: 0 auto;
+  }
+
+  .profilePage__details h2 {
+    padding: 12px 15px;
+    text-align: center;
+  }
+
+  .profilePage__plans h3 {
+    text-align: center;
+  }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 320px) {
+  .profilePage__body {
+    padding: 10px;
+  }
+
+  .profilePage__details h2 {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
 }
