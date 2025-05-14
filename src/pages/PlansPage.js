@@ -15,6 +15,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 function PlansPage() {
   const [products, setProducts] = useState([]);
+  const [loadingPlanId, setLoadingPlanId] = useState(null);
   const user = useSelector(selectUser);
 
   useEffect(() => {
@@ -63,6 +64,7 @@ function PlansPage() {
   const loadCheckout = async (priceId) => {
     try {
       //reference the "checkout_sessions" collection under the user's document
+      setLoadingPlanId(priceId);
       const checkoutSessionsRef = collection(
         db,
         "customers",
@@ -94,20 +96,33 @@ function PlansPage() {
       });
     } catch (error) {
       console.error("Error creating checkout session:", error);
+      setLoadingPlanId(null);
     }
   };
 
   return (
     <div className="plansPage">
       {Object.entries(products).map(([productId, productData]) => {
+        const isLoading = loadingPlanId === productData.prices.priceId;
         return (
           <div className="plansPage__plan" key={productData.prices.priceId}>
             <div className="plansPage__info">
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            <button onClick={() => loadCheckout(productData.prices.priceId)}>
-              Subscribe
+            <button
+              onClick={() => loadCheckout(productData.prices.priceId)}
+              disabled={loadingPlanId !== null}
+              className={isLoading ? "loading" : ""}
+            >
+              {isLoading ? (
+                <div className="button-loading">
+                  <div className="loading-spinner"></div>
+                  <span>Processing...</span>
+                </div>
+              ) : (
+                "Subscribe"
+              )}
             </button>
           </div>
         );
