@@ -6,39 +6,55 @@ import requests from "../services/Requests";
 function Banner() {
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  //fetch data from api
+  //get optimized image URL based on screen size
+  const getOptimizedImageUrl = (path) => {
+    //use smaller image for mobile devices
+    const width = window.innerWidth;
+    const size = width <= 768 ? "w780" : "original";
+    return `https://image.tmdb.org/t/p/${size}/${path}`;
+  };
+
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
         const request = await axios.get(requests.fetchNetflixOriginals);
-        let randomMovie;
 
-        do {
-          randomMovie =
-            request.data.results[
-              //randomly select a movie from the api
-              Math.floor(Math.random() * request.data.results.length)
+        // Filter movies that have backdrop images
+        const moviesWithBackdrops = request.data.results.filter(
+          (movie) => movie.backdrop_path
+        );
+
+        if (moviesWithBackdrops.length > 0) {
+          const randomMovie =
+            moviesWithBackdrops[
+              Math.floor(Math.random() * moviesWithBackdrops.length)
             ];
-        } while (!randomMovie?.backdrop_path); //make sure there's a move picture
 
-        setMovie(randomMovie);
+          // Preload image
+          const img = new Image();
+          img.src = getOptimizedImageUrl(randomMovie.backdrop_path);
+          img.onload = () => {
+            setMovie(randomMovie);
+            setImageLoaded(true);
+            setIsLoading(false);
+          };
+        }
       } catch (error) {
         console.error("Error fetching banner movie:", error);
-      } finally {
         setIsLoading(false);
       }
     }
     fetchData();
   }, []);
 
-  //truncate the description with e
-  function truncate(string, n) {
+  //truncate the description
+  const truncate = (string, n) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
-  }
+  };
 
-  //if the content is still loading, show a loading spinner
   if (isLoading) {
     return (
       <div className="banner banner--loading">
@@ -49,9 +65,9 @@ function Banner() {
 
   return (
     <header
-      className="banner"
+      className={`banner ${!imageLoaded ? "banner--loading" : ""}`}
       style={{
-        backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie?.backdrop_path}')`,
+        backgroundImage: `url('${getOptimizedImageUrl(movie?.backdrop_path)}')`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
       }}

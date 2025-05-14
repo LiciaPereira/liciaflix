@@ -1,6 +1,7 @@
 .row {
   color: white;
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 .row__posters {
@@ -8,8 +9,11 @@
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
+/* Hide scrollbar for cleaner look */
 .row__posters::-webkit-scrollbar {
   display: none;
 }
@@ -20,6 +24,8 @@
   margin-right: 20px;
   width: 100%;
   transition: transform 450ms;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .row__poster:hover {
@@ -32,5 +38,56 @@
 }
 
 .row__posterLarge:hover {
-  transform: scale(1.1zz);
+  transform: scale(1.09);
+}
+
+/* Loading state styles */
+.row__posters--loading {
+  gap: 20px;
+}
+
+.row__poster--placeholder {
+  background: #2a2a2a;
+  animation: loading-pulse 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Loading animation */
+@keyframes loading-pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .row__poster {
+    height: 100px;
+    margin-right: 10px;
+  }
+
+  .row__posterLarge {
+    height: 180px;
+  }
+
+  .row {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .row__poster {
+    height: 80px;
+  }
+
+  .row__posterLarge {
+    height: 140px;
+  }
 }

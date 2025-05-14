@@ -1,13 +1,19 @@
 .banner {
   position: relative;
-  height: 448px;
+  min-height: 50vh; /* Ensures minimum 50% of viewport height */
   color: white;
   object-fit: contain;
+  transition: opacity 0.3s ease-in-out;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .banner__contents {
   margin-left: 30px;
-  padding-top: 140px;
+  padding-top: 25vh;
   height: 190px;
 }
 
@@ -28,6 +34,10 @@
 }
 
 .banner--fadeBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 7.4rem;
   background-image: linear-gradient(
     180deg,
@@ -50,8 +60,8 @@
 }
 
 .banner__button:hover {
-  background-color: black;
-  color: white;
+  background-color: #e6e6e6;
+  color: black;
   transition: all 0.2s;
 }
 
@@ -59,25 +69,65 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 448px; /* Adjust this value based on your banner height */
+  background: #141414;
+  min-height: 448px;
 }
 
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #ff6969;
+  border: 3px solid #3e3e3e;
   border-radius: 50%;
-  animation: -webkit-spin 1s linear infinite;
-  animation: -moz-spin 1s linear infinite;
+  border-top-color: #e50914;
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
+  to {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive design */
+
+@media screen and (max-width: 768px) {
+  .banner {
+    min-height: 50vh;
+  }
+
+  .banner__contents {
+    margin-left: 20px;
+  }
+
+  .banner__title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .banner__description {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    width: 90%;
+    max-width: 360px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .banner {
+    height: 300px;
+  }
+
+  .banner__contents {
+    margin-left: 15px;
+  }
+
+  .banner__title {
+    font-size: 1.5rem;
+  }
+
+  .banner__description {
+    max-width: 240px;
+  }
+
+  .banner__button {
+    padding: 0.3rem 1.5rem;
   }
 }
