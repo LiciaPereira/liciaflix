@@ -1,11 +1,49 @@
 import React, { useEffect, useState } from "react";
 import axios from "../services/axios";
 import "../styles/Row.css";
+import {
+  movieMessages,
+  dismissButtonTexts,
+  getRandomItem,
+} from "../services/messages";
 
 function Row({ title, fetchURL, isLargeRow = false }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const base_url = "https://image.tmdb.org/t/p/original";
+
+  //show fun alert message
+  const showFunAlert = (movie) => {
+    const overlay = document.createElement("div");
+    overlay.classList.add("fun-overlay");
+
+    const alertBox = document.createElement("div");
+    alertBox.classList.add("fun-alert");
+
+    const titleEl = document.createElement("h3");
+    titleEl.classList.add("fun-alert__title");
+    titleEl.textContent = movie.name || movie.title;
+
+    const messageEl = document.createElement("p");
+    messageEl.classList.add("fun-alert__message");
+    messageEl.textContent = getRandomItem(movieMessages);
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = getRandomItem(dismissButtonTexts);
+    closeButton.addEventListener("click", () => overlay.remove());
+    alertBox.appendChild(titleEl);
+    alertBox.appendChild(messageEl);
+    alertBox.appendChild(closeButton);
+    overlay.appendChild(alertBox);
+    document.body.appendChild(overlay);
+
+    //auto-remove after 6 seconds
+    setTimeout(() => {
+      if (document.body.contains(overlay)) {
+        overlay.remove();
+      }
+    }, 6000);
+  };
 
   //fetch data from api and handle loading state
   useEffect(() => {
@@ -63,6 +101,7 @@ function Row({ title, fetchURL, isLargeRow = false }) {
                        780px"
                 src={`${base_url}${movie.poster_path}`}
                 alt={movie.name}
+                onClick={() => showFunAlert(movie)}
               />
             )
         )}

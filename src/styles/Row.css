@@ -26,6 +26,7 @@
   transition: transform 450ms;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  cursor: pointer;
 }
 
 .row__poster:hover {
@@ -89,5 +90,84 @@
 
   .row__posterLarge {
     height: 140px;
+  }
+}
+
+/* Fun Alert Styles */
+.fun-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.fun-alert {
+  background: #141414;
+  color: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 100px 30px rgba(229, 9, 20, 0.1),
+    0 0px 40px 12px rgb(26 26 26 / 80%);
+  animation: slideUp 0.3s ease-out;
+}
+
+.fun-alert__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #e50914;
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+}
+
+.fun-alert__message {
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #e6e6e6;
+}
+
+.fun-alert button {
+  padding: 12px 24px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.fun-alert button:hover {
+  transform: scale(1.05);
+  background-color: #f40612;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

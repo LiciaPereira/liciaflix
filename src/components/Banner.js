@@ -2,11 +2,49 @@ import React, { useEffect, useState } from "react";
 import "../styles/Banner.css";
 import axios from "../services/axios";
 import requests from "../services/Requests";
+import {
+  bannerMessages,
+  dismissButtonTexts,
+  getRandomItem,
+} from "../services/messages";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  //show fun alert message
+  const showFunAlert = (action) => {
+    const overlay = document.createElement("div");
+    overlay.classList.add("fun-overlay");
+
+    const alertBox = document.createElement("div");
+    alertBox.classList.add("fun-alert");
+
+    const titleEl = document.createElement("h3");
+    titleEl.classList.add("fun-alert__title");
+    titleEl.textContent = action === "play" ? "Play Movie" : "My List";
+
+    const messageEl = document.createElement("p");
+    messageEl.classList.add("fun-alert__message");
+    messageEl.textContent = getRandomItem(bannerMessages);
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = getRandomItem(dismissButtonTexts);
+    closeButton.addEventListener("click", () => overlay.remove());
+
+    alertBox.appendChild(titleEl);
+    alertBox.appendChild(messageEl);
+    alertBox.appendChild(closeButton);
+    overlay.appendChild(alertBox);
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+      if (document.body.contains(overlay)) {
+        overlay.remove();
+      }
+    }, 6000);
+  };
 
   //get optimized image URL based on screen size
   const getOptimizedImageUrl = (path) => {
@@ -77,8 +115,18 @@ function Banner() {
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <div className="banner__buttons">
-          <button className="banner__button">Play</button>
-          <button className="banner__button">My List</button>
+          <button
+            className="banner__button"
+            onClick={() => showFunAlert("play")}
+          >
+            Play
+          </button>
+          <button
+            className="banner__button"
+            onClick={() => showFunAlert("mylist")}
+          >
+            My List
+          </button>
         </div>
         <h2 className="banner__description">
           {truncate(movie?.overview, 150)}
