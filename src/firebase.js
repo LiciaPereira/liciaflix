@@ -3,7 +3,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDbJiR9NHxC10dPUrk5LcGLGRxgUBL-0Ms",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "licia-flix.firebaseapp.com",
   projectId: "licia-flix",
   storageBucket: "licia-flix.firebasestorage.app",
@@ -17,3 +17,4 @@ const auth = getAuth();
 
 export { auth };
 export default db;
+
