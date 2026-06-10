@@ -1,35 +1,68 @@
-# Liciaflix 🎬
+# Liciaflix
 
-Liciaflix is a Netflix Clone platform, built using React and Firebase. It connects seamlessly with Stripe to handle subscription payments, providing a smooth and reliable payment experience.
+A Netflix-inspired streaming app built with React, Firebase, Redux, and Stripe. It includes authentication, protected app screens, profile UI, plan selection, and movie category rows powered by API requests.
 
-Live Demo
-Check out [Liciaflix live](https://licia-flix.web.app/).
+Live site: https://licia-flix.web.app/
 
-Features
-User Authentication: Firebase Authentication handles secure sign-ups and logins.
-Subscription Management: Integrated with Stripe for streamlined payment processing.
-Responsive Design: Optimized to look great on all devices.
-Interactive UI: Built with a React-based dynamic interface for a real Netflix-like feel.
-Getting Started
-To clone and run this project locally:
+## Why This Project Matters
 
-Clone the repo:
+This project demonstrates common production app patterns: authentication, client-side routing, global user state, external API requests, payment/subscription flow structure, and responsive UI.
 
-bash
-Copy code
-git clone <repo_link>
-cd Liciaflix
+## Tech Stack
+
+- React
+- JavaScript
+- Firebase Authentication
+- Firestore
+- Redux Toolkit
+- Stripe
+- Axios
+- CSS
+
+## Features
+
+- User sign up and sign in with Firebase Authentication.
+- Protected home and profile screens.
+- Global user state with Redux Toolkit.
+- Movie rows and banner content loaded through API requests.
+- Profile and plan selection UI.
+- Stripe integration structure for subscription handling.
+- Responsive layout for desktop and mobile screens.
+
+## Getting Started
+
 Install dependencies:
 
-bash
-Copy code
+```bash
 npm install
-Set up Firebase and Stripe with your own API keys in a .env file.
+```
 
-Run the app:
+Create a `.env` file in the project root:
 
-bash
-Copy code
+```env
+REACT_APP_FIREBASE_API_KEY=your_firebase_web_api_key
+```
+
+Start the app:
+
+```bash
 npm start
+```
 
-Enjoy exploring Liciaflix!
+Open:
+
+```text
+http://localhost:3000
+```
+
+## Available Scripts
+
+```bash
+npm start
+npm run build
+npm test
+```
+
+## Development Notes
+
+The strongest parts of this project are the authentication flow, route structure, global user state, Firebase integration, and subscription UI. The app is a portfolio project and does not provide real streaming content.
