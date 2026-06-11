@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "../styles/SignInPage.css";
-import { auth } from "../firebase";
+import { auth, isFirebaseConfigured } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -33,6 +33,11 @@ function SignInPage({ email }) {
   const register = (e) => {
     e.preventDefault();
 
+    if (!isFirebaseConfigured) {
+      showErrorAlert("Authentication is not configured for this preview.");
+      return;
+    }
+
     if (passwordRef.current.value !== password2Ref.current.value) {
       showErrorAlert("Passwords don't match.");
     } else {
@@ -58,6 +63,11 @@ function SignInPage({ email }) {
 
   const signIn = (e) => {
     e.preventDefault();
+
+    if (!isFirebaseConfigured) {
+      showErrorAlert("Authentication is not configured for this preview.");
+      return;
+    }
 
     signInWithEmailAndPassword(auth, email2, passwordRef.current.value)
       .then((userCredential) => {

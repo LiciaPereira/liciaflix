@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         {!user ? (
           <Routes>
             <Route path="/" element={<LoginPage />} />
