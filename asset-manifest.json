@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/liciaflix/static/css/main.f404800a.css",
+    "main.js": "/liciaflix/static/js/main.f0516db9.js",
+    "static/media/login-bg-img.jpg": "/liciaflix/static/media/login-bg-img.cd7d91d151588be05f91.jpg",
+    "static/media/liciaflix-10-18-2024.png": "/liciaflix/static/media/liciaflix-10-18-2024.b4c0f2525ffe2ed37b43.png",
+    "index.html": "/liciaflix/index.html",
+    "main.f404800a.css.map": "/liciaflix/static/css/main.f404800a.css.map",
+    "main.f0516db9.js.map": "/liciaflix/static/js/main.f0516db9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f404800a.css",
+    "static/js/main.f0516db9.js"
+  ]
+}
