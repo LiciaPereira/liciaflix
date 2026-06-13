@@ -27,6 +27,11 @@ jobs:
       - name: Audit dependencies
         run: npm audit --audit-level=high
 
+      - name: Test
+        run: npm test -- --watchAll=false --runInBand
+        env:
+          CI: true
+
       - name: Build
         run: npm run build
         env:
