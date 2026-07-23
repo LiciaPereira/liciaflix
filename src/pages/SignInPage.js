@@ -19,10 +19,10 @@ function SignInPage({ email }) {
 
     const alertBox = document.createElement("div");
     alertBox.classList.add("overlay-alert");
-    alertBox.innerHTML = message;
+    alertBox.textContent = message;
 
     const okButton = document.createElement("button");
-    okButton.innerHTML = "OK";
+    okButton.textContent = "OK";
     okButton.addEventListener("click", () => overlay.remove());
 
     alertBox.appendChild(okButton);
